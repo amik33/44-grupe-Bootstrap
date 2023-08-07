@@ -1,10 +1,16 @@
-
+import { Future } from "../components/Future";
+import { Hero } from "../components/Hero";
+import { Products } from "../components/Products";
+import { Register } from "./Register";
 
 
 export function Home () {
     return (
         <div>
-           HOME CONTENT
+           <Hero />
+           <Future />
+           <Register />
+           <Products />
         </div>
     )
 };
