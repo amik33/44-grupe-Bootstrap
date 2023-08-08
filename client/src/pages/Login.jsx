@@ -1,24 +1,14 @@
-import style from './Auth.module.css';
 import { Link } from 'react-router-dom';
+import style from './Auth.module.css';
 import { useState } from 'react';
 
-export function Register () {
-    const [username, setUsername] = useState('');
-    const [usernameErr, setUsernameErr] = useState('');
-    const [usernameValid, setUsernameValid] = useState(false);
+export function Login() {
     const [email, setEmail] = useState('');
     const [emailErr, setEmailErr] = useState('');
     const [emailValid, setEmailValid] = useState(false);
     const [password, setPassword] = useState('');
     const [passwordErr, setPasswordErr] = useState('');
     const [passwordValid, setPasswordValid] = useState(false);
-    const [repassword, setRepassword] = useState('');
-    const [repasswordErr, setRepasswordErr] = useState('');
-    const [repasswordValid, setRepasswordValid] = useState(false);
-
-    function updateUsername(e) {
-        setUsername(e.target.value);
-    }
 
     function updateEmail(e) {
         setEmail(e.target.value);
@@ -26,22 +16,6 @@ export function Register () {
 
     function updatePassword(e) {
         setPassword(e.target.value);
-    }
-
-    function updateRepassword(e) {
-        setRepassword(e.target.value);
-    }
-
-    function isValidUsername() {
-        const minUsernameSize = 3;
-
-        if (username.length < minUsernameSize) {
-            setUsernameErr(`Username too short. Minimum ${minUsernameSize} symbols required.`);
-            setUsernameValid(false);
-        } else {
-            setUsernameErr(false);
-            setUsernameValid(true);
-        }
     }
 
     function isValidEmail() {
@@ -68,27 +42,16 @@ export function Register () {
         }
     }
 
-    function isValidRepeatPassword() {
-        if (password !== repassword) {
-            setRepasswordErr('Passwords do not match.');
-            setRepasswordValid(false);
-        } else {
-            setRepasswordErr(false);
-            setRepasswordValid(true);
-        }
-    }
-
     function handleSubmit(e) {
         e.preventDefault();
 
-        if (usernameValid && emailValid && passwordValid && repasswordValid) {
-            fetch('http://localhost:3001/api/register', {
+        if ( emailValid && passwordValid) {
+            fetch('http://localhost:3001/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    username,
                     email,
                     password,
                 }),
@@ -100,13 +63,8 @@ export function Register () {
     return (
         <div className={`form-signin w-100 m-auto ${style.formSignin}`}> 
           <form onSubmit={handleSubmit}>
-            <h1 className="h1 mb-3 fw-normal">Please sign up</h1>
-            <div className="form-floating mb-3">
-                <input onChange={updateUsername} onBlur={isValidUsername} type="text" id="username"
-                    className={`form-control ${usernameErr ? 'is-invalid' : ''} ${usernameValid ? 'is-valid' : ''}`} />
-                <label htmlFor="username">Username</label>
-                <div className="invalid-feedback">{usernameErr}</div>
-            </div>
+            <h1 className="h1 mb-3 fw-normal">Please sign in</h1>
+
             <div className="form-floating mb-3">
                 <input onChange={updateEmail} onBlur={isValidEmail} type="email" id="email"
                     className={`form-control ${emailErr ? 'is-invalid' : ''} ${emailValid ? 'is-valid' : ''}`} />
@@ -119,22 +77,17 @@ export function Register () {
                 <label htmlFor="password">Password</label>
                 <div className="invalid-feedback">{passwordErr}</div>
             </div>
-            <div className="form-floating">
-                <input onChange={updateRepassword} onBlur={isValidRepeatPassword} type="password" id="repassword"
-                    className={`form-control ${repasswordErr ? 'is-invalid' : ''} ${repasswordValid ? 'is-valid' : ''}`} />
-                <label htmlFor="repassword">Repeat password</label>
-                <div className="invalid-feedback">{repasswordErr}</div>
-            </div>
+
             <div className="form-check text-start my-3">
                 <input className="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" />
                 <label className="form-check-label" htmlFor="flexCheckDefault">
-                    Agree to <Link to='/future'>Terms of Service</Link>
+                    Remember me
                 </label>
             </div>
-            <button className="btn btn-warning w-100 py-2" type="submit" disabled={!usernameValid || !emailValid || !passwordValid || !repasswordValid}>Sign up</button>
+            <button className="btn btn-warning w-100 py-2" type="submit" disabled={!emailValid || !passwordValid}>Sign in</button>
             <p className="my-3 text-center text-body-secondary">or</p>
-            <Link to='/login' className="btn btn-outline-primary w-100 py-2">Sign in</Link>
+            <Link to='/future' className="btn btn-outline-primary w-100 py-2">Sign up</Link>
           </form>
-        </div>  
-    )
-};
+        </div>
+    );
+}
