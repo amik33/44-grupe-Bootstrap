@@ -50,13 +50,16 @@ export function Login() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                 },
                 body: JSON.stringify({
                     email,
                     password,
                 }),
             }).then(res => res.json())
-                .then(console.log);
+                .then(console.log)
+                .catch(err => console.error(err));
+                
         }
     }
 
@@ -64,20 +67,18 @@ export function Login() {
         <div className={`form-signin w-100 m-auto ${style.formSignin}`}> 
           <form onSubmit={handleSubmit}>
             <h1 className="h1 mb-3 fw-normal">Please sign in</h1>
-
             <div className="form-floating mb-3">
-                <input onChange={updateEmail} onBlur={isValidEmail} type="email" id="email"
+                <input onChange={updateEmail} onBlur={isValidEmail} type="email" id="email" value={email}
                     className={`form-control ${emailErr ? 'is-invalid' : ''} ${emailValid ? 'is-valid' : ''}`} />
                 <label htmlFor="email">Email address</label>
                 <div className="invalid-feedback">{emailErr}</div>
             </div>
             <div className="form-floating mb-3">
-                <input onChange={updatePassword} onBlur={isValidPassword} type="password" id="password"
+                <input onChange={updatePassword} onBlur={isValidPassword} type="password" id="password" value={password}
                     className={`form-control ${passwordErr ? 'is-invalid' : ''} ${passwordValid ? 'is-valid' : ''}`} />
                 <label htmlFor="password">Password</label>
                 <div className="invalid-feedback">{passwordErr}</div>
             </div>
-
             <div className="form-check text-start my-3">
                 <input className="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" />
                 <label className="form-check-label" htmlFor="flexCheckDefault">

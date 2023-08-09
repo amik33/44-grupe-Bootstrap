@@ -86,6 +86,7 @@ export function Register () {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                 },
                 body: JSON.stringify({
                     username,
@@ -93,7 +94,21 @@ export function Register () {
                     password,
                 }),
             }).then(res => res.json())
-                .then(console.log);
+                .then(data => {
+                    for (const item of data) {
+                        if (item.input === 'username') {
+                            setUsernameErr(item.msg);
+                        }
+                        if (item.input === 'email') {
+                            setEmailErr(item.msg);
+                        }
+                        if (item.input === 'password') {
+                            setPasswordErr(item.msg);
+                        }
+                    }
+            })
+
+                .catch(err => console.error(err));
         }
     }
 
@@ -102,31 +117,31 @@ export function Register () {
           <form onSubmit={handleSubmit}>
             <h1 className="h1 mb-3 fw-normal">Please sign up</h1>
             <div className="form-floating mb-3">
-                <input onChange={updateUsername} onBlur={isValidUsername} type="text" id="username"
+                <input onChange={updateUsername} onBlur={isValidUsername} type="text" id="username" value={username}
                     className={`form-control ${usernameErr ? 'is-invalid' : ''} ${usernameValid ? 'is-valid' : ''}`} />
                 <label htmlFor="username">Username</label>
                 <div className="invalid-feedback">{usernameErr}</div>
             </div>
             <div className="form-floating mb-3">
-                <input onChange={updateEmail} onBlur={isValidEmail} type="email" id="email"
+                <input onChange={updateEmail} onBlur={isValidEmail} type="email" id="email" value={email}
                     className={`form-control ${emailErr ? 'is-invalid' : ''} ${emailValid ? 'is-valid' : ''}`} />
                 <label htmlFor="email">Email address</label>
                 <div className="invalid-feedback">{emailErr}</div>
             </div>
             <div className="form-floating mb-3">
-                <input onChange={updatePassword} onBlur={isValidPassword} type="password" id="password"
+                <input onChange={updatePassword} onBlur={isValidPassword} type="password" id="password" value={password}
                     className={`form-control ${passwordErr ? 'is-invalid' : ''} ${passwordValid ? 'is-valid' : ''}`} />
                 <label htmlFor="password">Password</label>
                 <div className="invalid-feedback">{passwordErr}</div>
             </div>
             <div className="form-floating">
-                <input onChange={updateRepassword} onBlur={isValidRepeatPassword} type="password" id="repassword"
+                <input onChange={updateRepassword} onBlur={isValidRepeatPassword} type="password" id="repassword" value={repassword}
                     className={`form-control ${repasswordErr ? 'is-invalid' : ''} ${repasswordValid ? 'is-valid' : ''}`} />
                 <label htmlFor="repassword">Repeat password</label>
                 <div className="invalid-feedback">{repasswordErr}</div>
             </div>
             <div className="form-check text-start my-3">
-                <input className="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" />
+                <input className="form-check-input" type="checkbox" value="Agree-to" id="flexCheckDefault" />
                 <label className="form-check-label" htmlFor="flexCheckDefault">
                     Agree to <Link to='/future'>Terms of Service</Link>
                 </label>
