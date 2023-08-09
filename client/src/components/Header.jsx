@@ -9,9 +9,9 @@ export function Header () {
           {/* <svg className="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use to="#bootstrap"></use></svg> */}
         </Link>
         <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><Link to="/" className="nav-link px-2 text-secondary">Home</Link></li>
+          <li><Link to="/hero" className="nav-link px-2 text-secondary">Home</Link></li>
           <li><Link to="/future" className="nav-link px-2 text-white">Features</Link></li>
-          <li><Link to="/" className="nav-link px-2 text-white">Pricing</Link></li>
+          <li><Link to="/products" className="nav-link px-2 text-white">Pricing</Link></li>
           <li><Link to="/" className="nav-link px-2 text-white">FAQs</Link></li>
           <li><Link to="/" className="nav-link px-2 text-white">About</Link></li>
         </ul>
@@ -19,8 +19,8 @@ export function Header () {
           <input type="search" className="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search"/>
         </form>
         <div className="text-end">
-          <button type="button" className="btn btn-outline-light me-2">Login</button>
-          <button type="button" className="btn btn-warning">Sign-up</button>
+          <Link to="/login" className="btn btn-outline-light me-2">Login</Link>
+          <Link to="/register" className="btn btn-warning">Sign-up</Link>
         </div>
       </div>
     </div>
