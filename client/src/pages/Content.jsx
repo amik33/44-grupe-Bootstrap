@@ -2,8 +2,8 @@ export function Content () {
     return (
         <>
         <h2 className='pt-3'>Content</h2>
-        <div class="table-responsive small">
-          <table class="table table-striped table-sm">
+        <div className="table-responsive small">
+          <table className="table table-striped table-sm">
             <thead>
               <tr>
                 <th scope="col">#</th>

@@ -61,12 +61,18 @@ register.post('/', async (req, res) => {
         const [insertRes] = await connection.execute(insertQuery, [username, email, password]);
 
         if (insertRes.insertId > 0) {
-            return res.status(200).json({ status: 'ok', msg: 'POST: REGISTER API - ok, user created' });
+            return res.status(200).json({ 
+                status: 'ok', 
+                msg: 'POST: REGISTER API - ok, user created' });
         } else {
-            return res.status(400).json({ status: 'err', msg: 'POST: REGISTER API - error....' });
+            return res.status(400).json({ 
+                status: 'err', 
+                msg: 'POST: REGISTER API - error....' });
         }
     } catch (error) {
-        return res.status(500).json({ status: 'err', msg: 'POST: REGISTER API - server error.' });
+        return res.status(500).json({ 
+            status: 'err', 
+            msg: 'POST: REGISTER API - server error.' });
     }
 
 });

@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import style from './Auth.module.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { UserContext } from '../context/UserContext';
 
 export function Login() {
     const [email, setEmail] = useState('');
@@ -10,6 +11,8 @@ export function Login() {
     const [passwordErr, setPasswordErr] = useState('');
     const [passwordValid, setPasswordValid] = useState(false);
     const [formErr, setFormErr] = useState('');
+    const navigate = useNavigate();
+    const ctx = useContext(UserContext);
 
     function updateEmail(e) {
         setEmail(e.target.value);
@@ -53,14 +56,21 @@ export function Login() {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify({
                     email,
                     password,
                 }),
             }).then(res => res.json())
                 .then(data => {
+                    console.log(data);
                     if (data.status === 'err') {
                         setFormErr(data.msg);
+                    }
+                   
+                    if (data.status === 'ok') {
+                        ctx.loginUser();
+                        navigate('/content');
                     }
                 })
                 .catch(err => console.error(err));
