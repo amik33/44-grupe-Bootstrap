@@ -35,7 +35,7 @@ register.post('/', async (req, res) => {
     }
 
     if (errors.length > 0) {
-        return res.status(409).json(errors);
+        return res.status(409).json({ status: 'err-list', errors });
     }
 
     try {
@@ -43,7 +43,15 @@ register.post('/', async (req, res) => {
         const [selectRes] = await connection.execute(selectQuery, [email]);
 
         if (selectRes.length > 0) {
-            return res.status(200).json({ msg: 'User with such email already exists.' });
+            return res.status(200).json({
+                status: 'err-list',
+                errors: [
+                    {
+                        input: 'email',
+                        msg: 'User with such email already exists.'
+                    }
+                ]
+            });
         }
 
         const insertQuery = `INSERT INTO users 
@@ -53,12 +61,12 @@ register.post('/', async (req, res) => {
         const [insertRes] = await connection.execute(insertQuery, [username, email, password]);
 
         if (insertRes.insertId > 0) {
-            return res.status(200).json({ msg: 'POST: REGISTER API - ok, user created' });
+            return res.status(200).json({ status: 'ok', msg: 'POST: REGISTER API - ok, user created' });
         } else {
-            return res.status(400).json({ msg: 'POST: REGISTER API - error....' });
+            return res.status(400).json({ status: 'err', msg: 'POST: REGISTER API - error....' });
         }
     } catch (error) {
-        return res.status(500).json({ msg: 'POST: REGISTER API - server error.' });
+        return res.status(500).json({ status: 'err', msg: 'POST: REGISTER API - server error.' });
     }
 
 });

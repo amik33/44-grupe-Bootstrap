@@ -1,5 +1,5 @@
 import style from './Auth.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 export function Register () {
@@ -15,6 +15,7 @@ export function Register () {
     const [repassword, setRepassword] = useState('');
     const [repasswordErr, setRepasswordErr] = useState('');
     const [repasswordValid, setRepasswordValid] = useState(false);
+    const navigate = useNavigate();
 
     function updateUsername(e) {
         setUsername(e.target.value);
@@ -95,16 +96,21 @@ export function Register () {
                 }),
             }).then(res => res.json())
                 .then(data => {
-                    for (const item of data) {
-                        if (item.input === 'username') {
-                            setUsernameErr(item.msg);
+                    if (data.status === 'err-list') {
+                        for (const item of data.errors) {
+                            if (item.input === 'username') {
+                                setUsernameErr(item.msg);
+                            }
+                            if (item.input === 'email') {
+                                setEmailErr(item.msg);
+                            }
+                            if (item.input === 'password') {
+                                setPasswordErr(item.msg);
+                            }
                         }
-                        if (item.input === 'email') {
-                            setEmailErr(item.msg);
-                        }
-                        if (item.input === 'password') {
-                            setPasswordErr(item.msg);
-                        }
+                    }
+                    if (data.status === 'ok') {
+                        return navigate('/login');
                     }
             })
 

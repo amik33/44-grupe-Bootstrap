@@ -7,6 +7,9 @@ import { Login } from "./pages/Login";
 import { Hero } from "./components/Hero";
 import { Products } from "./components/Products";
 import { Future } from "./components/Future";
+import { Dashboard } from "./pages/Dashboard";
+import { UserLayout } from "./layout/UserLayout";
+import { Content } from "./pages/Content";
 
 function App() {
   return (
@@ -19,6 +22,15 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/products" element={<Products />} />
+          <Route path="*" element={<NoPages />} />
+        </Route>
+
+        <Route Component={UserLayout}>
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/content' element={<Content />} />
+        </Route>
+
+        <Route Component={Layout}>
           <Route path="*" element={<NoPages />} />
         </Route>
       </Routes>

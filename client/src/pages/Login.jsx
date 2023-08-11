@@ -9,6 +9,7 @@ export function Login() {
     const [password, setPassword] = useState('');
     const [passwordErr, setPasswordErr] = useState('');
     const [passwordValid, setPasswordValid] = useState(false);
+    const [formErr, setFormErr] = useState('');
 
     function updateEmail(e) {
         setEmail(e.target.value);
@@ -57,7 +58,11 @@ export function Login() {
                     password,
                 }),
             }).then(res => res.json())
-                .then(console.log)
+                .then(data => {
+                    if (data.status === 'err') {
+                        setFormErr(data.msg);
+                    }
+                })
                 .catch(err => console.error(err));
                 
         }
@@ -67,6 +72,14 @@ export function Login() {
         <div className={`form-signin w-100 m-auto ${style.formSignin}`}> 
           <form onSubmit={handleSubmit}>
             <h1 className="h1 mb-3 fw-normal">Please sign in</h1>
+            {
+                formErr && (
+                    <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                        {formErr}
+                        <button onClick={() => setFormErr('')} type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                )
+            }
             <div className="form-floating mb-3">
                 <input onChange={updateEmail} onBlur={isValidEmail} type="email" id="email" value={email}
                     className={`form-control ${emailErr ? 'is-invalid' : ''} ${emailValid ? 'is-valid' : ''}`} />

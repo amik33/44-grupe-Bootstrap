@@ -12,7 +12,11 @@ export function Header () {
           <li><Link to="/hero" className="nav-link px-2 text-secondary">Home</Link></li>
           <li><Link to="/future" className="nav-link px-2 text-white">Features</Link></li>
           <li><Link to="/products" className="nav-link px-2 text-white">Pricing</Link></li>
-          <li><Link to="/" className="nav-link px-2 text-white">FAQs</Link></li>
+          <li><Link to="/dashboard" className="nav-link px-2 text-white">Dashboard</Link></li>
+          <li><Link to="/content" className="nav-link px-2 text-white">Content</Link></li>
+          <li><Link to="/" className="nav-link px-2 text-white">About</Link></li>
+          <li><Link to="/" className="nav-link px-2 text-white">About</Link></li>
+          <li><Link to="/" className="nav-link px-2 text-white">About</Link></li>
           <li><Link to="/" className="nav-link px-2 text-white">About</Link></li>
         </ul>
         <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
