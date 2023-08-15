@@ -1,5 +1,5 @@
 import express from 'express';
-import { connection } from '../lib/lb.js';
+import { connection } from '../lib/db.js';
 
 const register = express.Router();
 

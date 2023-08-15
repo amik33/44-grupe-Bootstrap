@@ -1,12 +1,39 @@
 import { randomUUID} from 'crypto';
 import express from 'express';
-import { connection } from '../lib/lb.js';
-// import { log } from 'console';
+import { connection } from '../lib/db.js';
 
 const login = express.Router();
 
-login.get('/', (req, res) => {
-    return res.json({ msg: 'GET: LOGIN API' });
+login.get('/', async (req, res) => {
+
+    const {productToken } = req.cookies;
+
+    if (!productToken) {
+        return res.sendStatus(400);
+    }
+
+    try {
+        const selectQuery = `SELECT * FROM tokens WHERE token=?`;
+        const [selectRes] = await connection.execute(selectQuery, [productToken]);
+        const [token] = selectRes;
+
+        if (selectRes.length === 1) {
+            const cookieExpirationInDays = 1;
+            const createDate = new Date(token.created);
+            const now = new Date();
+            const daysDiff = (now - createDate) / 1000 / 86400;
+            if (daysDiff > cookieExpirationInDays) {
+                return res.sendStatus(400);
+            }
+
+            return res.sendStatus(200);
+        }
+
+        return res.sendStatus(400);
+    } catch (error) {
+        return res.status(500).json({ msg: 'Server error' });
+    }
+
 });
 
 login.post('/', async (req, res) => {
@@ -62,7 +89,7 @@ login.post('/', async (req, res) => {
 
         return res.status(200).set({
             'Set-Cookie': [
-                'productsToken=' + token,
+                'productToken=' + token,
                 'path=/',
                 'domain=localhost',
                 'max-age=86400',

@@ -4,6 +4,8 @@ import { useContext, useState } from 'react';
 import { UserContext } from '../context/UserContext';
 
 export function Login() {
+    const ctx = useContext(UserContext);
+
     const [email, setEmail] = useState('');
     const [emailErr, setEmailErr] = useState('');
     const [emailValid, setEmailValid] = useState(false);
@@ -12,7 +14,7 @@ export function Login() {
     const [passwordValid, setPasswordValid] = useState(false);
     const [formErr, setFormErr] = useState('');
     const navigate = useNavigate();
-    const ctx = useContext(UserContext);
+    
 
     function updateEmail(e) {
         setEmail(e.target.value);
@@ -110,7 +112,7 @@ export function Login() {
             </div>
             <button className="btn btn-warning w-100 py-2" type="submit" disabled={!emailValid || !passwordValid}>Sign in</button>
             <p className="my-3 text-center text-body-secondary">or</p>
-            <Link to='/future' className="btn btn-outline-primary w-100 py-2">Sign up</Link>
+            <Link to='/register' className="btn btn-outline-primary w-100 py-2">Sign up</Link>
           </form>
         </div>
     );

@@ -4,17 +4,25 @@ const initialUser = {
     loggedIn: false,
 };
 
+const initialProducts =[];
+
 export function UserContextValues() {
     const [user, setUser] = useState(initialUser);
+    const [products, setProducts] = useState(initialProducts);
 
     function loginUser () {
-        console.log('loggin in...');
         setUser(prev => ({...prev, loggedIn: true}));
+    }
+
+    function updateProducts (newProducts) {
+        setProducts(newProducts);
     }
 
     return {
         user,
+        products,
         loginUser,
+        updateProducts,
     }
 }
 

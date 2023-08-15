@@ -23,67 +23,19 @@ export function UserLayout () {
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to='/content' className="nav-link d-flex align-items-center gap-2" href="/">
+                    <Link to='/products' className="nav-link d-flex align-items-center gap-2" href="/">
                       {/* <svg className="bi"><use xlink:href="#file-earmark"></use></svg> */}
-                      Content
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/" className="nav-link d-flex align-items-center gap-2" href="/">
-                      {/* <svg className="bi"><use xlink:href="#cart"></use></svg> */}
                       Products
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/" className="nav-link d-flex align-items-center gap-2" href="/">
-                      {/* <svg className="bi"><use xlink:href="#people"></use></svg> */}
-                      Customers
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/" className="nav-link d-flex align-items-center gap-2" href="/">
-                      {/* <svg className="bi"><use xlink:href="#graph-up"></use></svg> */}
-                      Reports
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/" className="nav-link d-flex align-items-center gap-2" href="/">
-                      {/* <svg className="bi"><use xlink:href="#puzzle"></use></svg> */}
-                      Integrations
+                    <Link to="/products/add" className="nav-link d-flex align-items-center gap-2" href="/">
+                      {/* <svg className="bi"><use xlink:href="#cart"></use></svg> */}
+                      Add Products
                     </Link>
                   </li>
                 </ul>
-                <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
-                  <span>Saved reports</span>
-                  <Link to="/" className="link-secondary" href="/" aria-label="Add Link new report">
-                    {/* <svg className="bi"><use xlink:href="#plus-circle"></use></svg> */}
-                  </Link>
-                </h6>
                 <ul className="nav flex-column mb-auto">
-                  <li className="nav-item">
-                    <Link to="/" className="nav-link d-flex align-items-center gap-2" href="/">
-                      {/* <svg className="bi"><use xlink:href="#file-earmark-text"></use></svg> */}
-                      Current month
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/" className="nav-link d-flex align-items-center gap-2" href="/">
-                      {/* <svg className="bi"><use xlink:href="#file-earmark-text"></use></svg> */}
-                      Last quarter
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/" className="nav-link d-flex align-items-center gap-2" href="/">
-                      {/* <svg className="bi"><use xlink:href="#file-earmark-text"></use></svg> */}
-                      Social engagement
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/" className="nav-link d-flex align-items-center gap-2" href="/">
-                      {/* <svg className="bi"><use xlink:href="#file-earmark-text"></use></svg> */}
-                      Year-end sale
-                    </Link>
-                  </li>
                 </ul>
                 <hr className="my-3" />
                 <ul className="nav flex-column mb-auto">

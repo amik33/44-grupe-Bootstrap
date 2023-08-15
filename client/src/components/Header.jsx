@@ -31,11 +31,11 @@ export function Header () {
               transform: 'translate3d(0.5px, 34px, 0px)',
             }}>
             <li><Link className="dropdown-item" to="/dashboard">Dashboard</Link></li>
-            <li><Link className="dropdown-item" to="/content">Content</Link></li>
-            <li><Link className="dropdown-item" to="/content/add">New content</Link></li>
+            <li><Link className="dropdown-item" to="/products">Products</Link></li>
+            <li><Link className="dropdown-item" to="/products/add">New products</Link></li>
             <li><hr className="dropdown-divider"/></li>
-            <li><Link className="dropdown-item" href="/">Settings</Link></li>
-            <li><Link className="dropdown-item" href="/">Profile</Link></li>
+            <li><Link className="dropdown-item" to="/">Settings</Link></li>
+            <li><Link className="dropdown-item" to="/">Profile</Link></li>
             <li><hr className="dropdown-divider"/></li>
             <li><Link className="dropdown-item" to="/">Sign out</Link></li>
         </ul>
@@ -53,10 +53,8 @@ export function Header () {
           <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li><Link to="/hero" className="nav-link px-2 text-secondary">Home</Link></li>
             <li><Link to="/future" className="nav-link px-2 text-white">Features</Link></li>
-            <li><Link to="/products" className="nav-link px-2 text-white">Pricing</Link></li>
-            <li><Link to="/dashboard" className="nav-link px-2 text-white">Dashboard</Link></li>
-            <li><Link to="/content" className="nav-link px-2 text-white">Content</Link></li>
-            <li><Link to="/" className="nav-link px-2 text-white">About</Link></li>
+            <li><Link to="/hero" className="nav-link px-2 text-white">Pricing</Link></li>
+            <li><Link to="/" className="nav-link px-2 text-white">FAQs</Link></li>
             <li><Link to="/" className="nav-link px-2 text-white">About</Link></li>
           </ul>
         </div>
