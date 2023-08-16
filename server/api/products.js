@@ -13,4 +13,21 @@ products.get('/', async (req, res) => {
     }
 });
 
+products.post('/', async (req, res) => {
+    const { name, slug } = req.body;
+
+    try {
+        const insertQuery = `INSERT INTO products ( name, slug) VALUES (?, ?);`;
+        const [inserttRes] = await connection.execute(insertQuery, [name, slug]);
+        
+        if (inserttRes.affectedRows === 1) {
+            return res.status(201).json({msg: 'Product created'});
+        }
+
+        return res.status(400).json({msg: 'Problems with product creation'});
+    } catch (error) {
+        return res.status(500).json({ msg: 'Server error' });
+    }
+});
+
 export { products };

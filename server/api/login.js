@@ -6,15 +6,15 @@ const login = express.Router();
 
 login.get('/', async (req, res) => {
 
-    const {productToken } = req.cookies;
+    const {productsToken } = req.cookies;
 
-    if (!productToken) {
+    if (!productsToken) {
         return res.sendStatus(400);
     }
 
     try {
         const selectQuery = `SELECT * FROM tokens WHERE token=?`;
-        const [selectRes] = await connection.execute(selectQuery, [productToken]);
+        const [selectRes] = await connection.execute(selectQuery, [productsToken]);
         const [token] = selectRes;
 
         if (selectRes.length === 1) {
@@ -89,7 +89,7 @@ login.post('/', async (req, res) => {
 
         return res.status(200).set({
             'Set-Cookie': [
-                'productToken=' + token,
+                'productsToken=' + token,
                 'path=/',
                 'domain=localhost',
                 'max-age=86400',

@@ -7,21 +7,27 @@ export function ProductsTable({ products }) {
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Header</th>
-                        <th scope="col">Header</th>
-                        <th scope="col">Header</th>
-                        <th scope="col">Header</th>
+                        <th scope="col">Product name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Supplier</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Label</th>
+                        <th scope="col">Created</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         products.map((product, i) => (
                             <tr key={i}>
-                                <td>1,001</td>
-                                <td>random</td>
-                                <td>data</td>
-                                <td>placeholder</td>
-                                <td>text</td>
+                                <td>{i + 1}</td>
+                                <td>{product.name}</td>
+                                <td>{product.date}</td>
+                                <td>{product.supplier}</td>
+                                <td>{product.type}</td>
+                                <td>{product.amount}</td>
+                                <td>{product.label}</td>
+                                <td>{product.created}</td>
                             </tr>
                         ))
                     }
