@@ -63,7 +63,7 @@ export function AddProduct () {
                 <label className="form-check-label" htmlFor="save-info">Save this information for next time</label>
             </div>
             <hr className="my-4" />
-            <button className="w-100 btn btn-primary btn-lg" type="submit">Create product</button>
+            <button className="w-100 btn btn-warning me-3 btn-lg" type="submit">Create product</button>
         </form>
     </div>
 </>

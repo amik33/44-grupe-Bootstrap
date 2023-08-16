@@ -13,6 +13,7 @@ import { Products } from "./pages/Products";
 import { UserContextProvider } from './context/UserContext';
 import {UserContextValuesUpdate} from './context/UserContextValuesUpdate';
 import { AddProduct } from "./pages/AddProduct";
+import { EditProduct } from "./pages/EditProduct";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/products' element={<Products />} />
             <Route path='/products/add' element={<AddProduct />} />
+            <Route path='/editProduct' element={<EditProduct />} />
           </Route>
 
           <Route Component={Layout}>

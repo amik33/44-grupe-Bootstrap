@@ -30,4 +30,24 @@ products.post('/', async (req, res) => {
     }
 });
 
+products.post('/', async (req, res) => {
+    const { name, supplier, type, amount, label } = req.body;
+
+    try {
+        const updateQuery = `UPDATE products SET  
+        ( name, supplier, type, amount, label) 
+        VALUES (?, ?, ?, ?, ?)
+        WHERE 1 ;`;
+        const [updateRes] = await connection.execute(updateQuery, [name, supplier, type, amount, label ]);
+        
+        if (updateRes.affectedRows === 1) {
+            return res.status(201).json({msg: 'Product updated'});
+        }
+
+        return res.status(400).json({msg: 'Problems with product updation'});
+    } catch (error) {
+        return res.status(500).json({ msg: 'Server error' });
+    }
+});
+
 export { products };

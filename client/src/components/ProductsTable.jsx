@@ -8,11 +8,6 @@ export function ProductsTable({ products }) {
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Product name</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Supplier</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Label</th>
                         <th scope="col">Created</th>
                     </tr>
                 </thead>
@@ -22,12 +17,12 @@ export function ProductsTable({ products }) {
                             <tr key={i}>
                                 <td>{i + 1}</td>
                                 <td>{product.name}</td>
-                                <td>{product.date}</td>
-                                <td>{product.supplier}</td>
-                                <td>{product.type}</td>
-                                <td>{product.amount}</td>
-                                <td>{product.label}</td>
                                 <td>{product.created}</td>
+                                <td>
+                                    <Link to='/viewProduct' className='btn btn-warning me-3' >View</Link>
+                                    <Link to='/editProduct' className='btn btn-warning me-3' >Edit</Link>
+                                    <Link to='/deleteProduct' className='btn btn-warning me-3'>Delete</Link>
+                                </td>
                             </tr>
                         ))
                     }

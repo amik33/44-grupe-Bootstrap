@@ -29,9 +29,15 @@ export function UserLayout () {
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/products/add" className="nav-link d-flex align-items-center gap-2" href="/">
+                    <Link to="/products/add" className="nav-link d-flex align-items-center gap-2">
                       {/* <svg className="bi"><use xlink:href="#cart"></use></svg> */}
                       Add Products
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/editProduct" className="nav-link d-flex align-items-center gap-2" >
+                      {/* <svg className="bi"><use xlink:href="#cart"></use></svg> */}
+                      Edit Products
                     </Link>
                   </li>
                 </ul>
