@@ -30,24 +30,25 @@ export function EditProduct () {
     function handleSubmit(e) {
         e.preventDefault();
 
-        fetch('http://localhost:3001/api/products', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            credentials: 'include',
-            body: JSON.stringify({
-                name,
-                supplier,
-                type,
-                amount,
-                label,
-            }),
-        })
-            .then(res => res.json())
-            .then(console.log)
-            .catch(err => console.error(err));
+            fetch('http://localhost:3001/api/products', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify({
+                    name,
+                    supplier, 
+                    type, 
+                    amount, 
+                    label,
+                
+                }),
+             })
+                .then(res => res.json())
+                .then(console.log)
+                .catch(err => console.error(err));
                
     }
     
