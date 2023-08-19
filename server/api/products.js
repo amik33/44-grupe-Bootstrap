@@ -15,11 +15,11 @@ products.get('/', async (req, res) => {
 
 
 products.post('/', async (req, res) => {
-    const { name, slug, supplier, type, amount, label } = req.body;
+    const { name, slug, supplier, type, amount, label, labelAlt } = req.body;
 
     try {
-        const insertQuery = `INSERT INTO products ( name, slug, supplier, type, amount, label ) VALUES (?, ?, ?, ?, ?, ?);`;
-        const [inserttRes] = await connection.execute(insertQuery, [name, slug, supplier, type, amount, label ]);
+        const insertQuery = `INSERT INTO products ( name, slug, supplier, type, amount, label, labelAlt ) VALUES (?, ?, ?, ?, ?, ?, ?);`;
+        const [inserttRes] = await connection.execute(insertQuery, [name, slug, supplier, type, amount, label, labelAlt ]);
         
         if (inserttRes.affectedRows === 1) {
             return res.status(201).json({msg: 'Product created'});
@@ -32,14 +32,14 @@ products.post('/', async (req, res) => {
 });
 
 products.put('/', async (req, res) => {
-    const {name, supplier, type, amount, label } = req.body;
+    const {name, supplier, type, amount, label, labelAlt } = req.body;
 
     try {
         const updateQuery = `UPDATE products SET  
-        (name, supplier, type, amount, label) 
-        VALUES (?, ?, ?, ?, ?)
+        (name, supplier, type, amount, label, labelAlt) 
+        VALUES (?, ?, ?, ?, ?, ?)
         WHERE 1 ;`;
-        const [updateRes] = await connection.execute(updateQuery, [name, supplier, type, amount, label ]);
+        const [updateRes] = await connection.execute(updateQuery, [name, supplier, type, amount, label, labelAlt ]);
         
         if (updateRes.affectedRows === 1) {
             return res.status(201).json({msg: 'Product updated'});

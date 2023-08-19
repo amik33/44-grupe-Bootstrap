@@ -15,7 +15,7 @@ export function UserContextValuesUpdate(props) {
                 }
             })
             .catch(err => console.error(err));
-    }, );
+    }, []);
 
     return <div>{props.children}</div>;
 }

@@ -72,7 +72,7 @@ export function Login() {
                    
                     if (data.status === 'ok') {
                         ctx.loginUser();
-                        navigate('/content');
+                        navigate('/products');
                     }
                 })
                 .catch(err => console.error(err));
