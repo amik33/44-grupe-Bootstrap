@@ -13,11 +13,17 @@ const corsOptions = {
     credentials: true,
 };
 
+const helmetOptions = {
+    crossOriginResourcePolicy: false,
+};
+
 app.use(cors(corsOptions));
-app.use(helmet());
+app.use(helmet(helmetOptions));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
     return res.send('HOME PAGE');

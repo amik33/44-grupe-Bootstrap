@@ -25,11 +25,20 @@ export function AddProduct () {
     }
 
     function editAmount (e) {
-        setAmount(e.target.value);
+        const n = parseInt(e.target.value);
+        setAmount(n > 0 ? n : 0);
     }
 
     function editLabel (e) {
-        setLabel(e.target.value);
+        const formData = new FormData();
+        formData.append('image_file', e.target.files[0]);
+
+        fetch('http://localhost:3001/api/upload', {
+            method: 'POST',
+            body: formData,
+        }).then(res => res.json())
+            .then(data => setLabel(`http://localhost:3001/images/${data.path}`))
+            .catch(err => console.error(err));
     }
 
     function editLabelAlt (e) {
@@ -107,9 +116,9 @@ export function AddProduct () {
                 <hr className="my-3" />
                 <h4 className="mb-3">Label</h4>
                 <div className="col-12">
-                    <img src={preview} alt="preview" style={{width: 300, height: 300}} />
+                    <img src={label ? label : preview} alt="preview" style={{width: 300, height: 300, objectFit: 'contain'}} />
                     <label className="form-label d-flex p-2" htmlFor="label">Upload label</label>
-                    <input onChange={editLabel} value={label} type="file" className="form-control my-3" id="label" />
+                    <input onChange={editLabel} type="file" className="form-control my-3" id="label" />
                     <div className="invalid-feedback">
                         Valid Label image is required.
                     </div>
