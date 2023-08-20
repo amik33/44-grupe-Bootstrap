@@ -4,8 +4,9 @@ export function EditProduct () {
     const [name, setName] = useState('');
     const [supplier, setSupplier] = useState('');
     const [type, setType] = useState('');
-    const [amount, setAmount] = useState('');
+    const [amount, setAmount] = useState(0);
     const [label, setLabel] = useState('');
+    const [labelAlt, setLabelAlt] = useState('');
 
     function editName (e) {
         setName(e.target.value);
@@ -27,6 +28,10 @@ export function EditProduct () {
         setLabel(e.target.value);
     }
 
+    function editLabelAlt (e) {
+        setLabelAlt(e.target.value);
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -38,12 +43,7 @@ export function EditProduct () {
                 },
                 credentials: 'include',
                 body: JSON.stringify({
-                    name,
-                    supplier, 
-                    type, 
-                    amount, 
-                    label,
-                
+                    name, supplier, type, amount, label, labelAlt,
                 }),
              })
                 .then(res => res.json())
@@ -67,19 +67,38 @@ export function EditProduct () {
                 </div>
                 <div className="col-12">
                     <label htmlFor="supplier" className="form-label">Supplier</label>
-                    <input onChange={editSupplier} value={supplier}  type="text" className="form-control" id="username" placeholder="Supplier" />
+                    <input onChange={editSupplier} value={supplier}  type="text" className="form-control" id="supplier" placeholder="Supplier" />
+                    <div className="invalid-feedback">
+                        Valid Supplier name is required.
+                    </div>
                 </div>
                 <div className="col-12">
                     <label htmlFor="type" className="form-label">Type</label>
-                    <input onChange={editType} value={type}  type="text" className="form-control" id="username" placeholder="Type" />
+                    <input onChange={editType} value={type}  type="text" className="form-control" id="type" placeholder="Type" />
+                    <div className="invalid-feedback">
+                        Valid Type name is required.
+                    </div>
                 </div>
                 <div className="col-12">
                     <label htmlFor="amount" className="form-label">Amount</label>              
-                    <input onChange={editAmount} value={amount}  type="text" className="form-control" id="username" placeholder="Amount" />   
+                    <input onChange={editAmount} value={amount}  type="number" className="form-control" id="amount" placeholder="Amount" />
+                    <div className="invalid-feedback">
+                        Valid Amount value is required.
+                    </div>   
                 </div>
                 <div className="col-12">
                     <label htmlFor="label" className="form-label">Label</label>
-                    <input onChange={editLabel} value={label}  type="text" className="form-control" id="username" placeholder="Label" />
+                    <input onChange={editLabel} value={label}  type="text" className="form-control" id="label" placeholder="Label" />
+                    <div className="invalid-feedback">
+                        Valid label is required.
+                    </div>
+                </div>
+                <div className="col-12">
+                    <label htmlFor="labelAlt" className="form-label">LabelAlt</label>
+                    <input onChange={editLabelAlt} value={labelAlt}  type="text" className="form-control" id="labelAlt" placeholder="LabelAlt" />
+                    <div className="invalid-feedback">
+                        Valid Label Alt name is required.
+                    </div>
                 </div>
             </div>
             <hr className="my-3" />

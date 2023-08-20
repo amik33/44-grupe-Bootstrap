@@ -5,7 +5,7 @@ import { Layout } from "./layout/Layout";
 import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
 import { Hero } from "./components/Hero";
-// import { Products } from "./components/Products";
+import { ProductsComp } from "./components/ProductsComp";
 import { Future } from "./components/Future";
 import { Dashboard } from "./pages/Dashboard";
 import { UserLayout } from "./layout/UserLayout";
@@ -27,7 +27,7 @@ function App() {
             <Route path="/future" element={<Future />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            {/* <Route path="/products" element={<Products />} /> */}
+            <Route path="/productsComp" element={<ProductsComp />} />
             <Route path="*" element={<NoPages />} />
           </Route>
 

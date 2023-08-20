@@ -1,4 +1,4 @@
-export function Products () {
+export function ProductsComp () {
     return ( 
     <div className="container pt-5">
         <div className="row row-cols-1 row-cols-md-3 g-4">
